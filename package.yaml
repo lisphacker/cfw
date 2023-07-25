@@ -1,0 +1,90 @@
+name:                cfw
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/lisphacker/cfw#readme
+license:             BSD3
+author:              Gautham Ganapathy
+maintainer:          gauthamg@gmail.com
+copyright:           (c) Gautham Ganapathy, 2023
+category:            Web
+extra-source-files:
+- README.md
+
+default-extensions:
+# - ApplicativeDo
+# - BangPatterns
+# - ConstraintKinds
+# - DataKinds
+# - DefaultSignatures
+# - DeriveAnyClass
+# - DeriveFoldable
+# - DeriveFunctor
+# - DeriveGeneric
+# - DeriveLift
+# - DeriveTraversable
+# - DerivingStrategies
+# - DuplicateRecordFields
+# - EmptyCase
+# - ExistentialQuantification
+- FlexibleContexts
+# - FlexibleInstances
+# - FunctionalDependencies
+- GADTs
+# - GeneralizedNewtypeDeriving
+# - InstanceSigs
+# - KindSignatures
+- LambdaCase
+# - MultiParamTypeClasses
+# - MultiWayIf
+# - NamedFieldPuns
+- OverloadedStrings
+# - PatternSynonyms
+# - RankNTypes
+# - RecordWildCards
+# - ScopedTypeVariables
+# - StandaloneDeriving
+# - TupleSections
+# - TypeApplications
+# - TypeFamilies
+# - TypeFamilyDependencies
+# - TypeOperators
+
+dependencies:
+- base
+- containers
+- string-interpolate
+- text
+- vector
+
+# The library contains all of our application code.
+# The executable defined below is just a thin wrapper.
+library:
+  source-dirs: src
+
+# Runnable executable for our application
+executables:
+  cfw:
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+    - cfw
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
+
+# Test suite
+tests:
+  cfw-test:
+    source-dirs: test
+    main: Main.hs
+    dependencies:
+    - cfw
+    - hspec
+    - tasty
+    - tasty-hspec
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
