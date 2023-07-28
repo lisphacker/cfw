@@ -1,7 +1,15 @@
 module CFW.Core.Attributes where
 
-import Data.Text (Text)
-import Data.Map.Strict (Map(..))
+import           Data.Map.Strict (Map (..))
+import           Data.Text       (Text)
 
-data AttributeValue = AttrStr Text | AttrInt Int | AttrFloat Float | AttrDict AttributeMap
-newtype AttributeMap = AttributeMap (Map Text AttributeValue)
+data AttributeValue
+  = AttrStr Text
+  | AttrInt Int
+  | AttrFloat Float
+  | AttrDict AttributeMap
+  deriving (Eq)
+
+newtype AttributeMap =
+  AttributeMap (Map Text AttributeValue)
+  deriving (Eq)

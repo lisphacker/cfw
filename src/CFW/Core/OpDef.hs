@@ -2,7 +2,8 @@ module CFW.Core.OpDef where
 
 import           CFW.Core.Attributes  (AttributeMap)
 import           CFW.Core.Constraints (Constraint)
-import           CFW.Core.Type        (TypeDef)
+import           CFW.Core.Type        (Type)
+import           CFW.Core.TypeDef     (TypeDef)
 import           Data.Text            (Text)
 
 data OpDef =
