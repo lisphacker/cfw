@@ -2,8 +2,8 @@ module CFW.Dialects.Builtin where
 
 -- import           CFW.Core.Dialect
 -- import           CFW.Core.OpDef
-import           CFW.Core.Shape   (Shape, isScalarShape, scalarShape)
-import           CFW.Core.Type    (IsTypeDef (..))
+import           CFW.Core.Shape   (Shape(..), isScalarShape, scalarShape)
+import           CFW.Core.Type    (IsTypeDef (..), TypeDef(..))
 import GHC.Num (Integer(IN))
 
 data PrimitiveType = Integer Bool Int | Floating Int
@@ -24,33 +24,47 @@ f32 = Floating 32
 f64 = Floating 64
 
 
-instance IsTypeDef PrimitiveType where
-  isScalar _ = True
+data Type = PrimitiveType
+          | TensorType { rank :: Int, primitiveType :: PrimitiveType }
+  deriving (Eq)
 
-  shape _ = scalarShape
+-- instance IsTypeDef PrimitiveType where
+--   isScalar _ = True
 
-  isIntegral (Integer _ _) = True
-  isIntegral (Floating _)  = False
+--   shape _ = scalarShape
 
-  isFloating = not . isIntegral
+--   isIntegral (Integer _ _) = True
+--   isIntegral (Floating _)  = False
+
+--   isFloating = not . isIntegral
   
-  bitSize (Integer _ bits) = bits
-  bitSize (Floating bits)  = bits
+--   bitSize (Integer _ bits) = bits
+--   bitSize (Floating bits)  = bits
 
 
-data TensorType =
-  TensorType
-    { shape_        :: Shape
-    , primitiveType :: PrimitiveType
-    }
+-- data TensorType =
+--   TensorType
+--     { shape_        :: Shape
+--     , primitiveType :: PrimitiveType
+--     }
 
-instance IsTypeDef TensorType where
-  isScalar tt = isScalarShape (shape_ tt)
+-- instance IsTypeDef TensorType where
+--   isScalar tt = isScalarShape (shape_ tt)
 
-  shape = shape_
+--   shape = shape_
 
-  isIntegral = isIntegral . primitiveType
+--   isIntegral = isIntegral . primitiveType
   
-  isFloating = isFloating . primitiveType
+--   isFloating = isFloating . primitiveType
 
-  bitSize = bitSize . primitiveType
+--   bitSize = bitSize . primitiveType
+
+-- data ElementwiseBinaryOpCode = Add | Sub | Mul | Div | Mod | Pow
+-- data ElementwiseBinaryOp = ElementwiseBinaryOp ElementwiseBinaryOpCode TypeDef TypeDef TypeDef
+
+-- -- type TensorTypeDef = TypeDef (TensorType Shape PrimitiveType)
+
+-- ops = 
+--   [
+--     ElementwiseBinaryOp Add (TypeDef ui1) (TypeDef ui1) (TypeDef ui1)
+--   ]

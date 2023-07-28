@@ -1,11 +1,13 @@
 module CFW.Core.Shape where
 
-import Data.Vector (Vector, fromList, singleton)
-import Data.Int (Int64)
-import Data.Tree (flatten)
-import GHC.Arr (numElements)
+import           Data.Int    (Int64)
+import           Data.Tree   (flatten)
+import           Data.Vector (Vector, fromList, singleton)
+import           GHC.Arr     (numElements)
 
-newtype Shape = Shape (Vector Int64)
+newtype Shape =
+  Shape (Vector Int64)
+  deriving (Eq)
 
 scalarShape :: Shape
 scalarShape = Shape mempty
