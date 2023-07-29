@@ -1,6 +1,6 @@
 module CFW.Core.Attributes where
 
-import           Data.Map.Strict (Map (..))
+import           Data.Map.Strict (Map (..), empty)
 import           Data.Text       (Text)
 
 data AttributeType
@@ -21,6 +21,12 @@ newtype AttributeMapDef =
   AttributeMapDef (Map Text AttributeType)
   deriving (Eq)
 
+emptyAttributeMapDef :: AttributeMapDef
+emptyAttributeMapDef = AttributeMapDef empty
+
 newtype AttributeMap =
   AttributeMap (Map Text AttributeValue)
   deriving (Eq)
+
+emptyAttributeMap :: AttributeMap
+emptyAttributeMap = AttributeMap empty

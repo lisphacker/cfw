@@ -32,3 +32,30 @@ instance IsType Type where
   bitSize (ScalarType (Floating b))      = b
   bitSize (TensorType (Integer _ b) _ _) = b
   bitSize (TensorType (Floating b) _ _)  = b
+
+samePrimitiveType :: [Type] -> Bool
+samePrimitiveType [] = True
+samePrimitiveType [t] = True
+samePrimitiveType ((ScalarType pt):ts) = all eq ts
+  where
+    eq (ScalarType pt') = pt == pt'
+    eq _                = False
+samePrimitiveType ((TensorType pt _ _):ts) = all eq ts
+  where
+    eq (TensorType pt' _ _) = pt == pt'
+    eq _                    = False
+
+sameTypeShape :: [Type] -> Bool
+sameTypeShape [] = True
+sameTypeShape [t] = True
+sameTypeShape ((ScalarType _):ts) = all eq ts
+  where
+    eq (ScalarType _) = True
+    eq _              = False
+sameTypeShape ((TensorType _ r s):ts) = all eq ts
+  where
+    eq (TensorType _ r' s') = r == r' && s == s'
+    eq _                    = False
+
+sameType :: [Type] -> Bool
+sameType ts = samePrimitiveType ts && sameTypeShape ts

@@ -9,3 +9,8 @@ data Value =
     , valueType :: Type
     }
   deriving (Eq)
+
+valuesSameType :: [Value] -> Bool
+valuesSameType []     = True
+valuesSameType [v]    = True
+valuesSameType (v:vs) = all ((== valueType v) . valueType) vs

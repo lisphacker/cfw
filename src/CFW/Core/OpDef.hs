@@ -22,3 +22,12 @@ instance Eq OpDef where
     opDefName o1 == opDefName o2 &&
     opDefParams o1 == opDefParams o2 &&
     opDefAttrs o1 == opDefAttrs o2 && opDefResults o1 == opDefResults o2
+-- class IsOpDef od where
+--   opDefName :: od -> Text
+--   opDefParams :: od -> [TypeDef]
+--   opDefAttrs :: od -> AttributeMapDef
+--   opDefResults :: od -> [TypeDef]
+--   opDefConstraints :: od -> [Constraint]
+-- data OpDef =
+--   forall od. IsOpDef od =>
+--              OpDef od
