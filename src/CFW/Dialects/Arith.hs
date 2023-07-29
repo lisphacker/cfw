@@ -2,7 +2,7 @@ module CFW.Dialects.Builtin where
 
 import           CFW.Core.Attributes  (emptyAttributeMapDef)
 import           CFW.Core.Constraints (Constraint (..),
-                                       SameOperandsAndResultsElementType (..))
+                                       SameOperandsAndResultsType (..))
 import           CFW.Core.OpDef       (OpDef (..))
 import           CFW.Core.TypeDef     (TypeDef, anyTensorType)
 import           Data.Text            (Text)
