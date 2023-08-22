@@ -12,6 +12,6 @@ moduleOp =
     emptyAttributeDefMap
     []
     []
-    [HasRegions [GraphRegion], IsolatedFromAbove]
+    [HasRegions [(Just 1, GraphRegion)], IsolatedFromAbove]
 
 builtinDialect = Dialect "builtin" [moduleOp]

@@ -13,7 +13,7 @@ data RegionType
   | GraphRegion
 
 data OpDefProperty
-  = HasRegions [RegionType]
+  = HasRegions [(Maybe Int, RegionType)]
   | IsolatedFromAbove
 
 data ParameterDef =
