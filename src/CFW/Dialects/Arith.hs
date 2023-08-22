@@ -5,7 +5,7 @@ import           CFW.Core.Constraints (Constraint (..),
                                        SameOperandsAndResultsType (..))
 import           CFW.Core.OpDef       (OpDef (..), ParameterDef (ParameterDef),
                                        ResultDef (ResultDef))
-import           CFW.Core.TypeDef     (TypeDef, anyTensorType)
+import           CFW.Core.TypeDef     (TypeDef, anyScalarType)
 import           Data.Map.Strict      (fromList)
 import           Data.Text            (Text)
 
@@ -13,9 +13,9 @@ mkBinTensorOp :: Text -> OpDef
 mkBinTensorOp name =
   OpDef
     name
-    [ParameterDef "lhs" anyTensorType, ParameterDef "rhs" anyTensorType]
+    [ParameterDef "lhs" anyScalarType, ParameterDef "rhs" anyScalarType]
     emptyAttributeDefMap
-    [ResultDef "result" anyTensorType]
+    [ResultDef "result" anyScalarType]
     [Constraint SameOperandsAndResultsType]
     []
 

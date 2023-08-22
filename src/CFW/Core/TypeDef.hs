@@ -6,9 +6,12 @@ data PrimitiveType
   deriving (Eq)
 
 data TypeDef
-  = ScalarTypeDef PrimitiveType
+  = ScalarTypeDef [PrimitiveType]
   | TensorTypeDef [PrimitiveType] (Maybe Int)
   deriving (Eq)
+
+anyScalarType :: TypeDef
+anyScalarType = ScalarTypeDef []
 
 anyTensorType :: TypeDef
 anyTensorType = TensorTypeDef [] Nothing
