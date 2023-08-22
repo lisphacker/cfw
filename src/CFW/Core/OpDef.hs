@@ -16,28 +16,20 @@ data OpDefProperty
   = HasRegions [RegionType]
   | IsolatedFromAbove
 
-newtype ParameterName =
-  ParameterName Text
+data ParameterDef =
+  ParameterDef Text TypeDef
   deriving (Eq)
 
-newtype ParameterDefMap =
-  ParameterDefMap (Map ParameterName TypeDef)
-  deriving (Eq)
-
-newtype ResultName =
-  ResultName Text
-  deriving (Eq)
-
-newtype ResultDefMap =
-  ResultDefMap (Map ResultName TypeDef)
+data ResultDef =
+  ResultDef Text TypeDef
   deriving (Eq)
 
 data OpDef =
   OpDef
     { opDefName        :: Text
-    , opDefParams      :: ParameterDefMap
+    , opDefParams      :: [ParameterDef]
     , opDefAttrs       :: AttributeDefMap
-    , opDefResults     :: ResultDefMap
+    , opDefResults     :: [ResultDef]
     , opDefConstraints :: [Constraint]
     , opDefProperties  :: [OpDefProperty]
     }
