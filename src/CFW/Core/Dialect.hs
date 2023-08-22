@@ -4,4 +4,7 @@ import           CFW.Core.OpDef (OpDef (..))
 import           Data.Text      (Text)
 
 data Dialect =
-  Dialect Text [OpDef]
+  Dialect
+    { dialectName   :: Text
+    , dialectOpDefs :: [OpDef]
+    }

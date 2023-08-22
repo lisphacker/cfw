@@ -1,20 +1,28 @@
 module CFW.Dialects.Builtin where
 
-import           CFW.Core.Attributes  (emptyAttributeMapDef)
+import           CFW.Core.Attributes  (emptyAttributeDefMap)
 import           CFW.Core.Constraints (Constraint (..),
                                        SameOperandsAndResultsType (..))
-import           CFW.Core.OpDef       (OpDef (..))
+import           CFW.Core.OpDef       (OpDef (..),
+                                       ParameterDefMap (ParameterDefMap),
+                                       ParameterName (ParameterName),
+                                       ResultDefMap (ResultDefMap),
+                                       ResultName (ResultName))
 import           CFW.Core.TypeDef     (TypeDef, anyTensorType)
+import           Data.Map.Strict      (fromList)
 import           Data.Text            (Text)
 
 mkBinTensorOp :: Text -> OpDef
 mkBinTensorOp name =
   OpDef
     name
-    [anyTensorType, anyTensorType]
-    emptyAttributeMapDef
-    [anyTensorType]
+    (ParameterDefMap $
+     fromList
+       [(ParameterName "x", anyTensorType), (ParameterName "x1", anyTensorType)])
+    emptyAttributeDefMap
+    (ResultDefMap $ fromList [(ResultName "out", anyTensorType)])
     [Constraint SameOperandsAndResultsType]
+    []
 
 ops :: [OpDef]
 ops =

@@ -17,12 +17,12 @@ data AttributeValue
   | AttrDict AttributeMap
   deriving (Eq)
 
-newtype AttributeMapDef =
-  AttributeMapDef (Map Text AttributeType)
+newtype AttributeDefMap =
+  AttributeDefMap (Map Text AttributeType)
   deriving (Eq)
 
-emptyAttributeMapDef :: AttributeMapDef
-emptyAttributeMapDef = AttributeMapDef empty
+emptyAttributeDefMap :: AttributeDefMap
+emptyAttributeDefMap = AttributeDefMap empty
 
 newtype AttributeMap =
   AttributeMap (Map Text AttributeValue)

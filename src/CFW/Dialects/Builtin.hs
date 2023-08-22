@@ -1,30 +1,17 @@
 module CFW.Dialects.Builtin where
 
-import           CFW.Core.Attributes  (emptyAttributeMapDef)
-import           CFW.Core.Constraints (Constraint (..),
-                                       SameOperandsAndResultsType (..))
-import           CFW.Core.Dialect     (Dialect (..))
-import           CFW.Core.OpDef       (OpDef (..))
-import           CFW.Core.TypeDef     (TypeDef, anyTensorType)
-import           Data.Text            (Text)
+import           CFW.Core.Attributes (emptyAttributeMapDef)
+import           CFW.Core.Dialect    (Dialect (..))
+import           CFW.Core.OpDef      (OpDef (OpDef), OpDefProperty (..),
+                                      RegionType (GraphRegion))
 
-mkBinTensorOp :: Text -> OpDef
-mkBinTensorOp name =
+moduleOp =
   OpDef
-    name
-    [anyTensorType, anyTensorType]
+    "module"
+    []
     emptyAttributeMapDef
-    [anyTensorType]
-    [Constraint SameOperandsAndResultsType]
+    []
+    []
+    [HasRegions [GraphRegion], IsolatedFromAbove]
 
-ops :: [OpDef]
-ops =
-  [ mkBinTensorOp "add"
-  , mkBinTensorOp "sub"
-  , mkBinTensorOp "mul"
-  , mkBinTensorOp "div"
-  , mkBinTensorOp "pow"
-  ]
-
-arithDialect :: Dialect
-arithDialect = Dialect "arith" ops
+builtinDialect = Dialect "builtin" [moduleOp]
