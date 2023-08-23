@@ -12,9 +12,10 @@ data RegionType
   | SingleBlockRegion
   | GraphRegion
 
-data OpDefProperty
+data OpDefTrait
   = HasRegions [(Maybe Int, RegionType)]
   | IsolatedFromAbove
+  | Commutative
 
 data ParameterDef =
   ParameterDef Text TypeDef
@@ -31,7 +32,7 @@ data OpDef =
     , opDefAttrs       :: AttributeDefMap
     , opDefResults     :: [ResultDef]
     , opDefConstraints :: [Constraint]
-    , opDefProperties  :: [OpDefProperty]
+    , opDefTraits      :: [OpDefTrait]
     }
 
 instance Eq OpDef where
