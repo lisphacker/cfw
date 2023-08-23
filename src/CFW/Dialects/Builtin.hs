@@ -2,7 +2,7 @@ module CFW.Dialects.Builtin where
 
 import           CFW.Core.Attributes (emptyAttributeDefMap)
 import           CFW.Core.Dialect    (Dialect (..))
-import           CFW.Core.OpDef      (OpDef (OpDef), OpDefProperty (..),
+import           CFW.Core.OpDef      (OpDef (OpDef), OpDefTrait (..),
                                       RegionType (GraphRegion))
 
 moduleOp =
