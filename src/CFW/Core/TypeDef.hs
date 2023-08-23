@@ -40,11 +40,11 @@ allPrimitiveTypes :: [PrimitiveType]
 allPrimitiveTypes =
   [ui1, ui8, ui16, ui32, ui64, si8, si16, si32, si64, f8, f16, f32, f64]
 
-allIntegerTypes :: [PrimitiveType]
-allIntegerTypes = filter isInteger allPrimitiveTypes
+allIntegralTypes :: [PrimitiveType]
+allIntegralTypes = filter isIntegral allPrimitiveTypes
   where
-    isInteger (Integer _ _) = True
-    isInteger _             = False
+    isIntegral (Integer _ _) = True
+    isIntisIntegraleger _ = False
 
 allFloatingTypes :: [PrimitiveType]
 allFloatingTypes = filter isFloating allPrimitiveTypes
